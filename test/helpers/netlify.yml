@@ -1,0 +1,10 @@
+build:
+  # Dummy build command
+  lifecycle:
+    onBuild: echo onBuild
+plugins:
+  # Path to the plugin
+  - package: ../..
+    # Plugin configuration
+    config:
+      foo: bar
