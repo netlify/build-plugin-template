@@ -1,64 +1,81 @@
-<img src="static/logo.png" width="400"/><br>
-
-<!-- START -->
+[![Netlify Status](https://api.netlify.com/api/v1/badges/79deda3b-d696-4878-b15d-d9f3a862bdfc/deploy-status)](https://app.netlify.com/sites/awesome-swanson-e132b6/deploys)
 
 Template repository to create new Netlify Build plugins.
 
-## Usage
+The main Build plugins documentation can be found
+[here](https://docs.netlify.com/configure-builds/build-plugins/).
 
-To create a repository with a new Netlify Build plugin, click on the following
-button:
+# Initialization
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/build-plugin-template)
+To create a repository with a new Netlify Build plugin, click on the
+["Use this template" button](https://github.com/netlify/build-plugin-template/generate)
+on top of the page.
 
-Clone the repository locally. Go to the new repository directory then run the
-following command:
+The repository name should start with `netlify-plugin-`, for example
+`netlify-plugin-gatsby`.
+
+[Clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+locally.
+
+Inside the new repository directory, run the following command.
 
 ```
 npm run init
 ```
 
-After answering few questions, the Netlify Build plugin will be ready. You can
-add any logic to the main file at `src/main.js`. This file's comments will guide
-through the creation of a Build plugin.
+Some questions will be asked. Make sure the plugin's name matches the repository
+name.
 
-The following development tasks are already setup:
+Among other things, this will replace this `README.md` with the plugin's user
+documentation. Development documentation will still be available in the
+[`CONTRIBUTING.md`](/CONTRIBUTING.md#development-tasks).
 
-- `npm run ava` runs unit tests.
-- `npm run lint` lints source files.
-- `npm test` runs both unit tests and linting.
-- `npm run release` publishes this plugin to `npm`.
+Finally, create a Netlify Site with the repository. This will automatically run
+your Build plugins in Netlify Build on every `git push`, as a smoke test.
 
-## Plugin documentation
+You can also add a
+[Netlify status badge](https://docs.netlify.com/monitor-sites/status-badges/).
 
-<!-- END -->
+# Usage
 
-Netlify Build plugin - {{description}}.
+The plugin's logic should be added to [`./src/main.js`](/src/main.js). Comments
+in that file will guide you through the creation of a Build plugin.
 
-## Install
+## Development tasks
 
-```
-npm install netlify-plugin-{{name}}
-```
+The following development tasks are available. Please check the
+[`package.json`](/package.json) `scripts` property for more information.
 
-## Usage
-
-Add this plugin to the `plugins` array in your
-[`netlify.yml` configuration file](https://docs.netlify.com/configure-builds/file-based-configuration):
-
-```yml
-plugins:
-  - package: netlify-plugin-{{name}}
-    config: {}
+```bash
+npm run build
 ```
 
-## Configuration
+Runs a Netlify Build locally with the current plugin. This can be used for
+debugging and manual tests.
 
-The following `config` options are available:
+The local Build configuration file is [`netlify.toml`](/netlify.toml) and can be
+modified.
 
-### foo
+```bash
+npm run ava
+```
 
-_Type_: `string`\
-_Default_: `bar`
+Runs [unit tests](/test/main.js).
 
-Example description of the `foo` option.
+```bash
+npm run lint
+```
+
+Lints and prettifies source files.
+
+```bash
+npm test
+```
+
+Runs both unit tests and linting.
+
+```bash
+npm run release
+```
+
+Publishes this plugin to `npm`.

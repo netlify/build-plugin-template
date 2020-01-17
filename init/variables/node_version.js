@@ -6,7 +6,7 @@ const { trim } = require('./trim.js')
 const NODE_VERSION_VARIABLE = {
   name: 'nodeVersion',
   description: 'Supported Node.js version',
-  default: '>=8.3.0',
+  default: '>=10.22.0',
   filter: trim,
   validate(value) {
     if (!validRange(value)) {

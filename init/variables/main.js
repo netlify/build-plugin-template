@@ -1,5 +1,6 @@
 const inquirer = require('inquirer')
 const inquirerAutocomplete = require('inquirer-autocomplete-prompt')
+const { bold } = require('chalk')
 
 const { NAME_VARIABLE } = require('./name.js')
 const { DESCRIPTION_VARIABLE } = require('./description.js')
@@ -12,7 +13,9 @@ const { NODE_VERSION_VARIABLE } = require('./node_version.js')
 inquirer.registerPrompt('autocomplete', inquirerAutocomplete)
 
 // Retrieve all template variables from either options or CLI interactive prompt
-const getVariables = async function(options) {
+const getVariables = async function (options) {
+  console.log(bold('\nWhich Netlify Build plugin would you like to create?\n'))
+
   const questions = VARIABLES.filter(
     ({ name }) => options[name] === undefined,
   ).map(getQuestion)
@@ -33,7 +36,7 @@ const VARIABLES = [
 ]
 
 // Retrieve inquirer question
-const getQuestion = function({
+const getQuestion = function ({
   type = 'input',
   name,
   description,
@@ -54,7 +57,7 @@ const getQuestion = function({
 }
 
 // All questions are required
-const validateAnswer = function(validate, value) {
+const validateAnswer = function (validate, value) {
   if (value === '') {
     return 'Required'
   }
@@ -70,7 +73,7 @@ const validateAnswer = function(validate, value) {
   return message
 }
 
-const getCurrentYear = function() {
+const getCurrentYear = function () {
   return String(new Date().getYear() + YEAR_BASE)
 }
 

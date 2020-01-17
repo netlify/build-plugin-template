@@ -9,32 +9,33 @@ const { init } = require('./main.js')
 const { VARIABLES } = require('./variables/main.js')
 
 // CLI entry point of `npm run init`
-const runCli = async function() {
+const runCli = async function () {
   const flags = parseFlags()
   const flagsA = filterObj(flags, isUserFlag)
 
   try {
     await init(flagsA)
   } catch (error) {
-    console.error(error.message)
+    console.error(`${error.message}\n`)
     exit(1)
   }
 }
 
 // Parse CLI flags
-const parseFlags = function() {
-  return yargs
-    .options(FLAGS)
-    .usage(USAGE)
-    .parse()
+const parseFlags = function () {
+  return yargs.options(FLAGS).usage(USAGE).parse()
 }
 
 // Retrieve CLI flags
-const getVariablesFlags = function() {
+const getVariablesFlags = function () {
   return Object.assign(...VARIABLES.map(getVariableFlag))
 }
 
-const getVariableFlag = function({ name, description, default: defaultValue }) {
+const getVariableFlag = function ({
+  name,
+  description,
+  default: defaultValue,
+}) {
   return {
     [name]: {
       string: true,
@@ -51,7 +52,7 @@ const FLAGS = {
 const USAGE = ``
 
 // Remove `yargs`-specific options, shortcuts, dash-cased and aliases
-const isUserFlag = function(key, value) {
+const isUserFlag = function (key, value) {
   return (
     value !== undefined &&
     !INTERNAL_KEYS.includes(key) &&
