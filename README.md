@@ -21,7 +21,7 @@ npm run init
 After answering few questions, the Netlify Build plugin will be ready. You can
 add any logic to
 [the main file at `src/main.js`](https://github.com/netlify/build-plugin-template/blob/master/src/main.js).
-This file's comments will guide through the creation of a Build plugin.
+This file's comments will guide you through the creation of a Build plugin.
 
 The following development tasks are already setup:
 
