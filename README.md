@@ -27,6 +27,8 @@ documentation. Development documentation will still be available in the
 The plugin's logic should be added to [`./src/main.js`](/src/main.js). Comments
 in that file will guide you through the creation of a Build plugin.
 
+## Development tasks
+
 The following development tasks are available.
 
 ```bash
