@@ -1,5 +1,6 @@
 const inquirer = require('inquirer')
 const inquirerAutocomplete = require('inquirer-autocomplete-prompt')
+const { bold } = require('chalk')
 
 const { NAME_VARIABLE } = require('./name.js')
 const { DESCRIPTION_VARIABLE } = require('./description.js')
@@ -13,6 +14,8 @@ inquirer.registerPrompt('autocomplete', inquirerAutocomplete)
 
 // Retrieve all template variables from either options or CLI interactive prompt
 const getVariables = async function(options) {
+  console.log(bold('\nWhich Netlify Build plugin would you like to create?\n'))
+
   const questions = VARIABLES.filter(
     ({ name }) => options[name] === undefined,
   ).map(getQuestion)
