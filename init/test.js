@@ -1,4 +1,5 @@
 const execa = require('execa')
+const { red } = require('chalk')
 
 // Ensure `npm run init` worked by running tests
 const runTests = async function() {
@@ -9,7 +10,7 @@ const runTests = async function() {
   })
   if (failed) {
     console.error(all)
-    throw new Error('Error! Test run failed.')
+    throw new Error(red('Error! Test run failed.'))
   }
 }
 

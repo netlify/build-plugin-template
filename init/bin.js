@@ -16,7 +16,7 @@ const runCli = async function() {
   try {
     await init(flagsA)
   } catch (error) {
-    console.error(error.message)
+    console.error(`${error.message}\n`)
     exit(1)
   }
 }
