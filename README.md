@@ -29,7 +29,8 @@ in that file will guide you through the creation of a Build plugin.
 
 ## Development tasks
 
-The following development tasks are available.
+The following development tasks are available. Please check the
+[`package.json`](/package.json) `scripts` property for more information.
 
 ```bash
 npm run build

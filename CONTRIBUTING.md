@@ -37,16 +37,39 @@ npm test
 
 # Development tasks
 
-The following development tasks are available:
+The following development tasks are available. Please check the
+[`package.json`](/package.json) `scripts` property for more information.
 
-- `npm run build` runs a Netlify Build locally with the current plugin. This can
-  be used for debugging and manual tests. The local Build configuration file is
-  located at [`./test/helpers/netlify.yml`](/test/helpers/netlify.yml) and can
-  be modified.
-- `npm run ava` runs unit tests.
-- `npm run lint` lints source files.
-- `npm test` runs both unit tests and linting.
-- `npm run release` publishes this plugin to `npm`.
+```bash
+npm run build
+```
 
-Please check the [`package.json`](/package.json) `scripts` property for more
-information.
+Runs a Netlify Build locally with the current plugin. This can be used for
+debugging and manual tests.
+
+The local Build configuration file is located at
+[`./test/helpers/netlify.yml`](/test/helpers/netlify.yml) and can be modified.
+
+```bash
+npm run ava
+```
+
+Runs [unit tests](/test/main.js).
+
+```bash
+npm run lint
+```
+
+Lints and prettifies source files.
+
+```bash
+npm test
+```
+
+Runs both unit tests and linting.
+
+```bash
+npm run release
+```
+
+Publishes this plugin to `npm`.
