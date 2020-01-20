@@ -9,6 +9,10 @@ button.
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/build-plugin-template)
 
+In the second step ("Configure your site") of the Netlify Site creation, rename
+the repository from `build-plugin-template` to `netlify-plugin-nameOfPlugin`
+(for example `netlify-plugin-gatsby`).
+
 [Clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 locally.
 
@@ -17,6 +21,9 @@ Inside the new repository directory, run the following command.
 ```
 npm run init
 ```
+
+Some questions will be asked. Make sure the plugin's name matches the repository
+name.
 
 Among other things, this will replace this `README.md` with the plugin's user
 documentation. Development documentation will still be available in the

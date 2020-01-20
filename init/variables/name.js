@@ -1,11 +1,11 @@
-const { trim } = require('./trim.js')
-
 // {{name}} template variable
 const NAME_VARIABLE = {
   name: 'name',
   description: 'Plugin name',
   default: 'example',
-  filter: trim,
+  filter(value) {
+    return value.trim().replace('netlify-plugin-', '')
+  },
   // Try to enforce netlify-plugin-* convention
   validate(value) {
     const blacklistedWord = NAME_BLACKLIST.find(word =>
