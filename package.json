@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "init": "npm install --loglevel error --no-audit --no-fund && node init/bin.js",
+    "build": "netlify-build --config ./test/helpers/netlify.yml",
     "test": "npm run lint && npm run ava",
     "lint": "npm run eslint && npm run prettier",
     "eslint": "eslint --ignore-path .gitignore --fix --cache --format=codeframe --max-warnings=0 \"{src,init}/**/*.js\"",
