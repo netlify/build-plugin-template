@@ -8,3 +8,12 @@ extends:
   - eslint:recommended
   - plugin:node/recommended
   - prettier
+overrides:
+  - files: [init/**/*.js]
+    rules:
+      # `package.json` `engines.version` is `{{nodeVersion}}` at first
+      node/no-unsupported-features/es-syntax: 0
+  - files: [src/main.js]
+    rules:
+      # Some variables are left unused in the main files for example purpose
+      no-unused-vars: 0
