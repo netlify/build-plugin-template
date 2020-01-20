@@ -21,6 +21,7 @@ const init = async function(options) {
     await runTests()
     await execa.command('git add -A')
     await execa.command('git commit -m Init')
+    // Revert changes on errors
   } catch (error) {
     console.error(red('Error: Initialization failed.'))
     await execa.command('git reset --hard')
