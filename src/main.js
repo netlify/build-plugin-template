@@ -66,34 +66,12 @@ module.exports = {
   // The following events are also available to target specific build
   // lifecycle events.
   /*
-  // Fetch previous build cache
-  onPreGetCache() {},
-  onGetCache() {},
-  onPostGetCache() {},
-  // Install project dependencies
-  onPreInstall() {},
-  onInstall() {},
-  onPostInstall() {},
   // Before build commands are executed
   onPreBuild() {},
   // Build commands are executed
   onBuild() {},
   // After Build commands are executed
   onPostBuild() {},
-  // Build functions
-  onPreFunctionsBuild() {},
-  onFunctionsBuild() {},
-  onPostFunctionsBuild() {},
-  // Package the serverless functions
-  onPreFunctionsPackage() {},
-  onFunctionsPackage() {},
-  onPostFunctionsPackage() {},
-  // Runs before built artifacts are deployed
-  onPreDeploy() {},
-  // Save cached assets
-  onPreSaveCache() {},
-  onSaveCache() {},
-  onPostSaveCache() {},
   // Runs on build success
   onSuccess() {},
   // Runs on build error
