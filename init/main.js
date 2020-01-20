@@ -15,7 +15,7 @@ const init = async function(options) {
     await copyFiles()
     await applyTemplates(variables)
     await cleanRepo()
-    await execa.command('npm install --no-progress', { stdio: 'inherit' })
+    await execa.command('npm install --loglevel error', { stdio: 'inherit' })
     await runTests()
     await execa.command('git add -A')
     await execa.command('git commit -m Init')
