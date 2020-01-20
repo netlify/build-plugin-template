@@ -2,6 +2,7 @@
 // Please read the comments to learn more about the Netlify Build plugin syntax.
 // Find more information about how to write Netlify Build plugins at
 // https://github.com/netlify/build/blob/master/docs/creating-a-plugin.md
+/* eslint-disable no-unused-vars */
 
 // To run this plugin locally:
 //   1. Create a `netlify.yml`
