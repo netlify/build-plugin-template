@@ -38,7 +38,10 @@ const replaceVariables = function(content, variables) {
     DUMMY_NAME,
     `netlify-plugin-${variables.name}`,
   )
-  return contentB
+  // `package.json` `engines.version` cannot be {{}}. Otherwise some ESLint
+  // rules do not work
+  const contentC = contentB.replace(NODE_VERSION, variables.nodeVersion)
+  return contentC
 }
 
 const replaceVariable = function(content, name, value) {
@@ -47,5 +50,6 @@ const replaceVariable = function(content, name, value) {
 }
 
 const DUMMY_NAME = 'netlify-plugin-example'
+const NODE_VERSION = '>=8.3.0'
 
 module.exports = { applyTemplates }

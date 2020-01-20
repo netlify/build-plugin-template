@@ -56,6 +56,6 @@
     "yargs": "^15.1.0"
   },
   "engines": {
-    "node": "{{nodeVersion}}"
+    "node": ">=8.3.0"
   }
 }
