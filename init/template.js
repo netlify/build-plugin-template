@@ -3,7 +3,7 @@ const { promisify } = require('util')
 
 const fastGlob = require('fast-glob')
 
-const PACKAGE_ROOT = `${__dirname}/../..`
+const PACKAGE_ROOT = `${__dirname}/..`
 // Files that have template variables
 const TEMPLATES = ['*.{json,md}', '{src,.github}/**']
 
