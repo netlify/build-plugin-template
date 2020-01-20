@@ -1,8 +1,17 @@
+const { getRepo } = require('./repo.js')
+
 // {{name}} template variable
 const NAME_VARIABLE = {
   name: 'name',
   description: 'Plugin name',
-  default: 'example',
+  async default() {
+    const repo = await getRepo()
+    if (repo === undefined) {
+      return 'example'
+    }
+    const [, repoName] = repo.split('/')
+    return repoName
+  },
   filter(value) {
     return value.trim().replace('netlify-plugin-', '')
   },
