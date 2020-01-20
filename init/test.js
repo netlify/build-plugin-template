@@ -10,7 +10,7 @@ const runTests = async function() {
   })
   if (failed) {
     console.error(all)
-    throw new Error(red('Error! Test run failed.'))
+    throw new Error(red('Error: Test run failed.'))
   }
 }
 
