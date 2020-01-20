@@ -8,6 +8,6 @@ const copyFiles = async function() {
   await cpy(files, PACKAGE_ROOT)
 }
 
-const FILES = ['README.md']
+const FILES = ['README.md', 'netlify.yml']
 
 module.exports = { copyFiles }
