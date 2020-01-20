@@ -8,11 +8,11 @@
     "!*~"
   ],
   "scripts": {
-    "init": "npm install && node scripts/init/bin.js",
+    "init": "npm install && node init/bin.js",
     "test": "npm run lint && npm run ava",
     "lint": "npm run eslint && npm run prettier",
-    "eslint": "eslint --ignore-path .gitignore --fix --cache --format=codeframe --max-warnings=0 \"{src,scripts}/**/*.js\"",
-    "prettier": "prettier --ignore-path .gitignore --write --loglevel warn \"{.github,src,scripts}/**/*.{js,md,yml,json}\" \"*.{js,md,yml,json}\"",
+    "eslint": "eslint --ignore-path .gitignore --fix --cache --format=codeframe --max-warnings=0 \"{src,init}/**/*.js\"",
+    "prettier": "prettier --ignore-path .gitignore --write --loglevel warn \"{.github,src,init}/**/*.{js,md,yml,json}\" \"*.{js,md,yml,json}\"",
     "ava": "ava --verbose",
     "release": "release-it"
   },
