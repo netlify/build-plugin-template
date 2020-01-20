@@ -9,6 +9,8 @@ const NETLIFY_CONFIG = `${HELPERS_DIR}/netlify.yml`
 //   netlify-build --config ./helpers/netlify.yml
 // Please see this netlify.yml configuration file. It simply runs the
 // Build plugin.
+// This is a smoke test. You will probably want to write more elaborate unit
+// tests to cover your plugin's logic.
 test('Netlify Build should not fail', async t => {
   const childProcess = execa('netlify-build', ['--config', NETLIFY_CONFIG], {
     // `FORCE_COLOR` is needed to show colors in the terminal
