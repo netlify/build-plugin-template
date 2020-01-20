@@ -1,5 +1,7 @@
 <img src="static/logo.png" width="400"/><br>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/79deda3b-d696-4878-b15d-d9f3a862bdfc/deploy-status)](https://app.netlify.com/sites/awesome-swanson-e132b6/deploys)
+
 Template repository to create new Netlify Build plugins.
 
 # Initialization
