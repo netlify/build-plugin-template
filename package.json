@@ -29,7 +29,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@netlify/build": "^0.1.34",
+    "@netlify/build": "^0.1.37",
     "ava": "^2.4.0",
     "del": "^5.1.0",
     "email-validator": "^2.0.4",
