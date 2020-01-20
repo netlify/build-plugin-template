@@ -2,13 +2,13 @@
 
 Netlify Build plugin - {{description}}.
 
-## Install
+# Install
 
 ```
 npm install netlify-plugin-{{name}}
 ```
 
-## Usage
+# Usage
 
 Add this plugin to the `plugins` array in your
 [`netlify.yml` configuration file](https://docs.netlify.com/configure-builds/file-based-configuration):
@@ -19,11 +19,11 @@ plugins:
     config: {}
 ```
 
-## Configuration
+# Configuration
 
 The following `config` options are available:
 
-### foo
+## foo
 
 _Type_: `string`\
 _Default_: `bar`
