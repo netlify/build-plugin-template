@@ -13,7 +13,8 @@ const NAME_VARIABLE = {
     return repoName
   },
   filter(value) {
-    return value.trim().replace('netlify-plugin-', '')
+    const valueA = value.trim()
+    return NAME_BLACKLIST.reduce(filterValue, valueA)
   },
   // Try to enforce netlify-plugin-* convention
   validate(value) {
@@ -26,6 +27,11 @@ const NAME_VARIABLE = {
   },
 }
 
-const NAME_BLACKLIST = ['netlify', 'plugin', 'addon', 'build']
+const filterValue = function(value, word) {
+  const regExp = new RegExp(`[^\\w]?${word}[^\\w]?`, 'g')
+  return value.replace(regExp, '')
+}
+
+const NAME_BLACKLIST = ['netlify', 'build', 'plugin', 'addon']
 
 module.exports = { NAME_VARIABLE }
