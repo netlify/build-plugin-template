@@ -8,7 +8,7 @@
     "!*~"
   ],
   "scripts": {
-    "init": "npm install --loglevel error --no-audit && node init/bin.js",
+    "init": "npm install --loglevel error --no-audit --no-fund && node init/bin.js",
     "test": "npm run lint && npm run ava",
     "lint": "npm run eslint && npm run prettier",
     "eslint": "eslint --ignore-path .gitignore --fix --cache --format=codeframe --max-warnings=0 \"{src,init}/**/*.js\"",

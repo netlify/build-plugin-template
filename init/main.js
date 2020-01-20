@@ -15,7 +15,7 @@ const init = async function(options) {
     await copyFiles()
     await applyTemplates(variables)
     await cleanRepo()
-    await execa.command('npm install --loglevel error --no-audit', {
+    await execa.command('npm install --loglevel error --no-audit --no-fund', {
       stdio: 'inherit',
     })
     await runTests()
