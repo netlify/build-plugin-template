@@ -2,34 +2,62 @@
 
 Template repository to create new Netlify Build plugins.
 
-## Usage
+# Initialization
 
 To create a repository with a new Netlify Build plugin, click on the following
-button:
+button.
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/build-plugin-template)
 
-Clone the repository locally. Go to the new repository directory then run the
-following command:
+[Clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+locally.
+
+Inside the new repository directory, run the following command:
 
 ```
 npm run init
 ```
 
-After answering few questions, the Netlify Build plugin will be ready. You can
-add any logic to [the main file at `/src/main.js`](/src/main.js). This file's
-comments will guide you through the creation of a Build plugin.
+# Usage
 
-The following development tasks are already setup:
+The plugin's logic should be added to [`./src/main.js`](/src/main.js). Comments
+in that file will guide you through the creation of a Build plugin.
 
-- `npm run build` runs a Netlify Build locally with the current plugin. This can
-  be used for debugging and manual tests. The local Build configuration file is
-  located at [`./test/helpers/netlify.yml`](/test/helpers/netlify.yml) and can
-  be modified.
-- `npm run ava` runs unit tests.
-- `npm run lint` lints source files.
-- `npm test` runs both unit tests and linting.
-- `npm run release` publishes this plugin to `npm`.
+The following development tasks are already setup.
+
+```bash
+$ npm run build
+```
+
+Runs a Netlify Build locally with the current plugin. This can be used for
+debugging and manual tests.
+
+The local Build configuration file is located at
+[`./test/helpers/netlify.yml`](/test/helpers/netlify.yml) and can be modified.
+
+```bash
+$ npm run ava
+```
+
+Runs [unit tests](/test/main.js).
+
+```bash
+$ npm run lint
+```
+
+Lints source files.
+
+```bash
+$ npm test
+```
+
+Runs both unit tests and linting.
+
+```bash
+$ npm run release
+```
+
+Publishes this plugin to `npm`.
 
 More information is available in the
 [`CONTRIBUTING.md`](/CONTRIBUTING.md#development-tasks).
