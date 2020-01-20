@@ -1,6 +1,7 @@
 const execa = require('execa')
 
 const { getOptions } = require('./options.js')
+const { copyFiles } = require('./copy.js')
 const { applyTemplates } = require('./template.js')
 const { runTests } = require('./test.js')
 const { cleanRepo } = require('./clean.js')
@@ -9,6 +10,7 @@ const { cleanRepo } = require('./clean.js')
 // Initialize/scaffold the template repository.
 const init = async function(options) {
   const { variables } = await getOptions(options)
+  await copyFiles()
   await applyTemplates(variables)
   await cleanRepo()
   await execa.command('npm install --no-progress', { stdio: 'inherit' })

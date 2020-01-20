@@ -31,6 +31,7 @@
   "devDependencies": {
     "@netlify/build": "^0.1.37",
     "ava": "^2.4.0",
+    "cpy": "^8.0.0",
     "del": "^5.1.0",
     "email-validator": "^2.0.4",
     "eslint": "6.8.0",
