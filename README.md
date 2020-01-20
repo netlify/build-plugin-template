@@ -18,13 +18,16 @@ Inside the new repository directory, run the following command.
 npm run init
 ```
 
+Among other things, this will replace this `README.md` with the plugin's user
+documentation. Development documentation will still be available in the
+[`CONTRIBUTING.md`](/CONTRIBUTING.md#development-tasks).
+
 # Usage
 
 The plugin's logic should be added to [`./src/main.js`](/src/main.js). Comments
 in that file will guide you through the creation of a Build plugin.
 
-The following development tasks are available. More information is available in
-the [`CONTRIBUTING.md`](/CONTRIBUTING.md#development-tasks).
+The following development tasks are available.
 
 ```bash
 npm run build
