@@ -15,9 +15,7 @@ const init = async function(options) {
     await copyFiles()
     await applyTemplates(variables)
     await cleanRepo()
-    await execa.command('npm install --loglevel error --no-audit --no-fund', {
-      stdio: 'inherit',
-    })
+    await npmInstall()
     await runTests()
     await execa.command('git add -A')
     await execa.command('git commit -m Init')
@@ -25,8 +23,15 @@ const init = async function(options) {
   } catch (error) {
     console.error(red('Error: Initialization failed.'))
     await execa.command('git reset --hard')
+    await npmInstall()
     throw error
   }
+}
+
+const npmInstall = async function() {
+  await execa.command('npm install --loglevel error --no-audit --no-fund', {
+    stdio: 'inherit',
+  })
 }
 
 module.exports = { init }
