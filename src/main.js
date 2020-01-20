@@ -8,9 +8,9 @@ module.exports = {
   // Name of the Netlify Build plugin. Should match the package name on npm.
   name: 'netlify-plugin-{{name}}',
 
-  // The plugin main logic uses `on...` handlers that are triggered on each new
-  // Netlify Build.
-  // Anything can be done inside those handlers.
+  // The plugin main logic uses `on...` event handlers that are triggered on
+  // each new Netlify Build.
+  // Anything can be done inside those event handlers.
   // Information about the current build are passed as arguments. The build
   // configuration file and some core utilities are also available.
   async onInit({
@@ -50,7 +50,7 @@ module.exports = {
       functions,
     },
   }) {
-    // Commands are printed in logs
+    // Commands are printed in Netlify logs
     await run('echo', ['Hello world!\n'])
 
     // Console logs are shown in Netlify logs
@@ -96,9 +96,10 @@ module.exports = {
   config: {
     // Make `config.foo` required
     required: ['foo'],
-    // Allow users to pass unknown `config.*` properties
-    additionalProperties: true,
-    // Each property can be validated using any JSON schema keyword
+    // If false (the default value), users cannot pass unknown `config.*`
+    // properties
+    additionalProperties: false,
+    // Each property can be validated using any JSON schema keyword.
     // `default` can be used to assign default values.
     properties: {
       foo: { type: 'string' },
