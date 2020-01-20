@@ -1,4 +1,5 @@
 const execa = require('execa')
+const { red } = require('chalk')
 
 const { getOptions } = require('./options.js')
 const { copyFiles } = require('./copy.js')
@@ -9,14 +10,20 @@ const { cleanRepo } = require('./clean.js')
 // `npm run init` main logic.
 // Initialize/scaffold the template repository.
 const init = async function(options) {
-  const { variables } = await getOptions(options)
-  await copyFiles()
-  await applyTemplates(variables)
-  await cleanRepo()
-  await execa.command('npm install --no-progress', { stdio: 'inherit' })
-  await runTests()
-  await execa.command('git add -A')
-  await execa.command('git commit -m Init')
+  try {
+    const { variables } = await getOptions(options)
+    await copyFiles()
+    await applyTemplates(variables)
+    await cleanRepo()
+    await execa.command('npm install --no-progress', { stdio: 'inherit' })
+    await runTests()
+    await execa.command('git add -A')
+    await execa.command('git commit -m Init')
+  } catch (error) {
+    console.error(red('Error: Initialization failed.'))
+    await execa.command('git reset --hard')
+    throw error
+  }
 }
 
 module.exports = { init }
