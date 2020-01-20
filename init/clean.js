@@ -4,7 +4,7 @@ const { promisify } = require('util')
 const del = require('del')
 const omit = require('omit.js')
 
-const PACKAGE_ROOT = `${__dirname}/../..`
+const PACKAGE_ROOT = `${__dirname}/..`
 const SCRIPTS_DIR = `${PACKAGE_ROOT}/init`
 const PACKAGE_JSON = `${PACKAGE_ROOT}/package.json`
 const ESLINTRC = `${PACKAGE_ROOT}/.eslintrc.yml`
