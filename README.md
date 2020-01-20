@@ -30,3 +30,6 @@ The following development tasks are already setup:
 - `npm run lint` lints source files.
 - `npm test` runs both unit tests and linting.
 - `npm run release` publishes this plugin to `npm`.
+
+More information is available in the
+[`CONTRIBUTING.md`](/CONTRIBUTING.md#development-tasks).
