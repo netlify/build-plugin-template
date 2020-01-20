@@ -8,7 +8,6 @@ const filterObj = require('filter-obj')
 const PACKAGE_ROOT = `${__dirname}/..`
 const SCRIPTS_DIR = `${PACKAGE_ROOT}/init`
 const PACKAGE_JSON = `${PACKAGE_ROOT}/package.json`
-const ESLINTRC = `${PACKAGE_ROOT}/.eslintrc.yml`
 
 const pReadFile = promisify(readFile)
 const pWriteFile = promisify(writeFile)
@@ -16,11 +15,7 @@ const pWriteFile = promisify(writeFile)
 // Remove all files, properties and logic needed by `npm run init` once
 // `npm run init` is done.
 const cleanRepo = async function() {
-  await Promise.all([
-    del(SCRIPTS_DIR, { force: true }),
-    cleanPackageJson(),
-    cleanEslintrc(),
-  ])
+  await Promise.all([del(SCRIPTS_DIR, { force: true }), cleanPackageJson()])
 }
 
 // Remove `npm run init` in `package.json` and all `devDependencies`.
@@ -60,14 +55,5 @@ const DEV_DEPENDENCIES = [
   'prettier',
   'release-it',
 ]
-
-// Remove init-specific ESLint rules
-const cleanEslintrc = async function() {
-  const content = await pReadFile(ESLINTRC, 'utf8')
-  const contentA = content.replace(ESLINTRC_REGEXP, '')
-  await pWriteFile(ESLINTRC, contentA)
-}
-
-const ESLINTRC_REGEXP = /overrides:[^]*/
 
 module.exports = { cleanRepo }
