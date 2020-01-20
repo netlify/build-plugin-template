@@ -42,6 +42,6 @@ const cleanEslintrc = async function() {
   await pWriteFile(ESLINTRC, contentA)
 }
 
-const ESLINTRC_REGEXP = /override:[^]*/
+const ESLINTRC_REGEXP = /overrides:[^]*/
 
 module.exports = { cleanRepo }
