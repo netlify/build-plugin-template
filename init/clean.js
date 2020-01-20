@@ -3,6 +3,7 @@ const { promisify } = require('util')
 
 const del = require('del')
 const omit = require('omit.js')
+const filterObj = require('filter-obj')
 
 const PACKAGE_ROOT = `${__dirname}/..`
 const SCRIPTS_DIR = `${PACKAGE_ROOT}/init`
@@ -25,15 +26,40 @@ const cleanRepo = async function() {
 // Remove `npm run init` in `package.json` and all `devDependencies`.
 const cleanPackageJson = async function() {
   const content = await pReadFile(PACKAGE_JSON, 'utf8')
-  const { scripts, ...packageJson } = JSON.parse(content)
+  const { scripts, dependencies, devDependencies, ...packageJson } = JSON.parse(
+    content,
+  )
 
   const scriptsA = omit(scripts, 'init')
-  const packageJsonA = omit(packageJson, 'devDependencies')
-  const packageJsonB = { ...packageJsonA, scripts: scriptsA }
+  const devDependenciesA = filterObj(devDependencies, shouldKeepDevDependency)
+  const packageJsonA = {
+    ...packageJson,
+    scripts: scriptsA,
+    dependencies,
+    devDependencies: devDependenciesA,
+  }
 
-  const contentA = JSON.stringify(packageJsonB, null, 2)
+  const contentA = JSON.stringify(packageJsonA, null, 2)
   await pWriteFile(PACKAGE_JSON, contentA)
 }
+
+// Remove devDependencies used only for initialization
+const shouldKeepDevDependency = function(key) {
+  return DEV_DEPENDENCIES.includes(key)
+}
+
+const DEV_DEPENDENCIES = [
+  '@netlify/build',
+  'ava',
+  'eslint',
+  'eslint-config-prettier',
+  'eslint-plugin-import',
+  'eslint-plugin-node',
+  'eslint-plugin-prettier',
+  'execa',
+  'prettier',
+  'release-it',
+]
 
 // Remove init-specific ESLint rules
 const cleanEslintrc = async function() {
