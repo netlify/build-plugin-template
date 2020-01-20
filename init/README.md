@@ -1,6 +1,6 @@
 <img src="static/logo.png" width="400"/><br>
 
-Netlify Build plugin - {{description}}.
+Netlify Build plugin {{name}} - {{description}}.
 
 # Install
 

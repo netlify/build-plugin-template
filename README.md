@@ -4,6 +4,13 @@ Template repository to create new Netlify Build plugins.
 
 # Initialization
 
+To create a repository with a new Netlify Build plugin, click on the "Use this
+template" button.
+
+Name the repository `netlify-plugin-nameOfPlugin` (for example
+`netlify-plugin-gatsby`).
+
+<!--
 To create a repository with a new Netlify Build plugin, click on the following
 button.
 
@@ -12,6 +19,7 @@ button.
 In the second step ("Configure your site") of the Netlify Site creation, rename
 the repository from `build-plugin-template` to `netlify-plugin-nameOfPlugin`
 (for example `netlify-plugin-gatsby`).
+-->
 
 [Clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 locally.

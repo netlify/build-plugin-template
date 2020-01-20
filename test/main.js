@@ -16,9 +16,11 @@ test('Netlify Build should not fail', async t => {
     // `FORCE_COLOR` is needed to show colors in the terminal
     env: { FORCE_COLOR: '1' },
   })
+
   // Prints output to the terminal
-  childProcess.stdout.pipe(process.stdout)
-  childProcess.stderr.pipe(process.stderr)
+  // childProcess.stdout.pipe(process.stdout)
+  // childProcess.stderr.pipe(process.stderr)
+
   // Check that build succeeded
   const { exitCode } = await childProcess
   t.is(exitCode, 0)

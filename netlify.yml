@@ -1,2 +1,3 @@
 build:
-  command: npm test
+  lifecycle:
+    onBuild: npm test
