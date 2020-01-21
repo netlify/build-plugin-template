@@ -1,2 +1,2 @@
 [build]
-command = "npm test"
+command = "echo test"
