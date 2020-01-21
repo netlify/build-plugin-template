@@ -1,4 +1,3 @@
 build:
-  command: npm test
   lifecycle:
-    onBuild: npm test
+    onBuild: echo test
