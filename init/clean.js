@@ -7,9 +7,6 @@ const filterObj = require('filter-obj')
 
 const PACKAGE_ROOT = `${__dirname}/..`
 const SCRIPTS_DIR = `${PACKAGE_ROOT}/init`
-// TODO: Do not use TOML anymore once "Deploy to Netlify" button supports
-// netlify.yml
-const NETLIFY_TOML_CONFIG = `${PACKAGE_ROOT}/netlify.toml`
 const PACKAGE_JSON = `${PACKAGE_ROOT}/package.json`
 
 const pReadFile = promisify(readFile)
@@ -18,10 +15,7 @@ const pWriteFile = promisify(writeFile)
 // Remove all files, properties and logic needed by `npm run init` once
 // `npm run init` is done.
 const cleanRepo = async function() {
-  await Promise.all([
-    del([SCRIPTS_DIR, NETLIFY_TOML_CONFIG], { force: true }),
-    cleanPackageJson(),
-  ])
+  await Promise.all([del(SCRIPTS_DIR, { force: true }), cleanPackageJson()])
 }
 
 // Remove `npm run init` in `package.json` and all `devDependencies`.
