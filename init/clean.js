@@ -25,7 +25,7 @@ const cleanPackageJson = async function() {
     content,
   )
 
-  const scriptsA = omit(scripts, 'init')
+  const scriptsA = omit(scripts, ['init'])
   const devDependenciesA = filterObj(devDependencies, shouldKeepDevDependency)
   const packageJsonA = {
     ...packageJson,
