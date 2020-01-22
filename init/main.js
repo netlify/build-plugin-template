@@ -6,7 +6,7 @@ const { copyFiles } = require('./copy.js')
 const { applyTemplates } = require('./template.js')
 const { runTests } = require('./test.js')
 const { cleanRepo } = require('./clean.js')
-const { createSite } = require('./site.js')
+// const { createSite } = require('./site.js')
 
 // `npm run init` main logic.
 // Initialize/scaffold the template repository.
@@ -29,7 +29,7 @@ const init = async function(options) {
     throw error
   }
 
-  await createSite(variables)
+  // await createSite(variables)
 }
 
 const npmInstall = async function() {
