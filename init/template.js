@@ -32,6 +32,9 @@ const replaceVariables = function(content, variables) {
     (contentA, [name, value]) => replaceVariable(contentA, name, value),
     content,
   )
+  if (variables.nodeVersion === undefined) {
+    return contentA
+  }
   // `package.json` `name` field cannot include {{}}. Otherwise `npm install`
   // and `npm run` do not work.
   const contentB = contentA.replace(
