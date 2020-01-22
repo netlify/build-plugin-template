@@ -52,6 +52,7 @@ const DEV_DEPENDENCIES = [
   'eslint-plugin-node',
   'eslint-plugin-prettier',
   'execa',
+  'netlify-cli',
   'prettier',
   'release-it',
 ]
