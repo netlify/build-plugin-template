@@ -54,28 +54,30 @@ const getUsername = async function() {
 
 // Create a new Netlify Site, if needed
 const createNewSite = async function(name, username) {
-  const result = await getSiteId()
+  const { all } = await execa.command('netlify status', { all: true })
+  const result = getSiteId(all)
   if (result.siteId !== undefined) {
     return result.siteId
   }
 
   const accountSlug = getAccountSlug(username)
-  await execa.command(
+  const {
+    all: allA,
+  } = await execa.command(
     `netlify sites:create --name netlify-plugin-${name} ${accountSlug}`,
-    { stdio: 'inherit' },
+    { all: true },
   )
+  const siteId = getSiteId(allA)
+  if (siteId === undefined) {
+    throw new Error(allA)
+  }
+
   await execa.command(`netlify link --id ${siteId}`, { stdio: 'inherit' })
 
-  const { siteId, all } = await getSiteId()
-  if (siteId === undefined) {
-    throw new Error(all)
-  }
   return siteId
 }
 
-// Retrieve current Site ID
-const getSiteId = async function() {
-  const { all } = await execa.command('netlify status', { all: true })
+const getSiteId = function(all) {
   const results = SITE_ID_REGEXP.exec(stripAnsi(all))
   if (results === null) {
     return { all }
