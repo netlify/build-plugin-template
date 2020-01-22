@@ -1,5 +1,6 @@
 const execa = require('execa')
 const { bold } = require('chalk')
+const stripAnsi = require('strip-ansi')
 
 const { getRepo } = require('./variables/repo.js')
 const { applyTemplates } = require('./template.js')
@@ -29,26 +30,38 @@ const login = async function() {
     return
   }
 
-  await execa('netlify login', { stdio: 'inherit' })
+  await execa.command('netlify login', { stdio: 'inherit' })
 
   await isLoggedIn(true)
 }
 
 const isLoggedIn = async function(reject) {
-  const { failed } = await execa('netlify api getCurrentUser --data {}', {
-    reject,
-  })
+  const { failed } = await execa.command(
+    'netlify api getCurrentUser --data {}',
+    { reject },
+  )
   return !failed
+}
+
+// Retrieve GitHub username
+const getUsername = async function() {
+  const repo = await getRepo()
+  if (repo === undefined) {
+    return
+  }
+  const [username] = repo.split('/')
+  return username
 }
 
 // Create a new Netlify Site, if needed
 const createNewSite = async function(name, username) {
-  if ((await getSiteId()).siteId === undefined) {
-    return
+  const result = await getSiteId()
+  if (result.siteId !== undefined) {
+    return result.siteId
   }
 
   const accountSlug = getAccountSlug(username)
-  await execa(
+  await execa.command(
     `netlify sites:create --name netlify-plugin-${name} ${accountSlug}`,
     { stdio: 'inherit' },
   )
@@ -62,8 +75,8 @@ const createNewSite = async function(name, username) {
 
 // Retrieve current Site ID
 const getSiteId = async function() {
-  const { all } = await execa('netlify status', { all: true })
-  const results = SITE_ID_REGEXP.exec(all)
+  const { all } = await execa.command('netlify status', { all: true })
+  const results = SITE_ID_REGEXP.exec(stripAnsi(all))
   if (results === null) {
     return { all }
   }
@@ -71,16 +84,7 @@ const getSiteId = async function() {
   return { siteId }
 }
 
-const SITE_ID_REGEXP = /Site Id:\s+([\w-]+)/i
-
-const getUsername = async function() {
-  const repo = await getRepo()
-  if (repo === undefined) {
-    return
-  }
-  const [username] = repo.split('/')
-  return username
-}
+const SITE_ID_REGEXP = /Site Id:\s+(.+)/i
 
 const getAccountSlug = function(username) {
   if (username === undefined) {
@@ -91,14 +95,17 @@ const getAccountSlug = function(username) {
 
 // Link Netlify Site locally
 const linkSite = async function(siteId) {
-  await execa(`netlify link --id ${siteId}`, { stdio: 'inherit' })
+  await execa.command(`netlify link --id ${siteId}`, { stdio: 'inherit' })
 }
 
 // Enable Netlify Build beta
 const enableBeta = async function(siteId) {
-  await execa(
-    `netlify api updateSite --data '{"site_id": "${siteId}", "body": {"build_settings": {"env":  {"NETLIFY_BUILD_LIFECYCLE_TRIAL": "enabled=true"}}}}'`,
-  )
+  await execa('netlify', [
+    'api',
+    'updateSite',
+    '--data',
+    `{"site_id": "${siteId}", "body": {"build_settings": {"env":  {"NETLIFY_BUILD_LIFECYCLE_TRIAL": "enabled=true"}}}}`,
+  ])
 }
 
 module.exports = { createSite }
