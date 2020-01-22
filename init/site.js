@@ -12,7 +12,6 @@ const createSite = async function({ name }) {
     await login()
     const username = await getUsername()
     const siteId = await createNewSite(name, username)
-    await linkSite(siteId)
     await enableBeta(siteId)
     await applyTemplates({ siteId, username })
   } catch (error) {
@@ -65,6 +64,7 @@ const createNewSite = async function(name, username) {
     `netlify sites:create --name netlify-plugin-${name} ${accountSlug}`,
     { stdio: 'inherit' },
   )
+  await execa.command(`netlify link --id ${siteId}`, { stdio: 'inherit' })
 
   const { siteId, all } = await getSiteId()
   if (siteId === undefined) {
@@ -91,11 +91,6 @@ const getAccountSlug = function(username) {
     return ''
   }
   return `--account-slug=${username}`
-}
-
-// Link Netlify Site locally
-const linkSite = async function(siteId) {
-  await execa.command(`netlify link --id ${siteId}`, { stdio: 'inherit' })
 }
 
 // Enable Netlify Build beta
