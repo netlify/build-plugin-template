@@ -1,5 +1,7 @@
 <img src="static/logo.png" width="400"/><br>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/{{siteId}}/deploy-status)](https://app.netlify.com/sites/{{username}}/deploys)
+
 Netlify Build plugin {{name}} - {{description}}.
 
 # Install
