@@ -6,24 +6,11 @@ Netlify Build plugin {{name}} - {{description}}.
 
 # Install
 
-```
-npm install netlify-plugin-{{name}}
-```
-
-# Usage
-
-Add this plugin to the `plugins` array in your
-[`netlify.yml` configuration file](https://docs.netlify.com/configure-builds/file-based-configuration):
-
-```yml
-plugins:
-  - package: netlify-plugin-{{name}}
-    config: {}
-```
+Please install this plugin from the Netlify app.
 
 # Configuration
 
-The following `config` options are available:
+The following `inputs` options are available:
 
 ## foo
 

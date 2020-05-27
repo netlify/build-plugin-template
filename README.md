@@ -46,7 +46,7 @@ npm run build
 Runs a Netlify Build locally with the current plugin. This can be used for
 debugging and manual tests.
 
-The local Build configuration file is [`netlify.yml`](/netlify.yml) and can be
+The local Build configuration file is [`netlify.toml`](/netlify.toml) and can be
 modified.
 
 ```bash
