@@ -60,7 +60,7 @@ modified.
 npm run ava
 ```
 
-Runs [unit tests](/test/main.js).
+Runs [unit tests](/test/index.js).
 
 ```bash
 npm run lint
