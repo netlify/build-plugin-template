@@ -38,8 +38,8 @@ You can also add a
 
 # Usage
 
-The plugin's logic should be added to [`./src/index.js`](/src/index.js). Comments
-in that file will guide you through the creation of a Build plugin.
+The plugin's logic should be added to [`./src/index.js`](/src/index.js).
+Comments in that file will guide you through the creation of a Build plugin.
 
 ## Development tasks
 
