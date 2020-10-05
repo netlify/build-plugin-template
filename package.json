@@ -52,7 +52,7 @@
     "netlify-cli": "^2.65.0",
     "omit.js": "^2.0.2",
     "prettier": "^2.1.2",
-    "release-it": "^13.7.1",
+    "release-it": "^14.0.3",
     "semver": "^7.3.2",
     "spdx-license-list": "^6.3.0",
     "strip-ansi": "^6.0.0",
