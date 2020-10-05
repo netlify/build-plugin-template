@@ -5,7 +5,7 @@ const { exit } = require('process')
 const yargs = require('yargs')
 const filterObj = require('filter-obj')
 
-const { init } = require('./index.js')
+const { init } = require('./main.js')
 const { VARIABLES } = require('./variables/main.js')
 
 // CLI entry point of `npm run init`
