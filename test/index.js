@@ -15,6 +15,7 @@ test('Netlify Build should not fail', async (t) => {
   const { success, logs } = await netlifyBuild({
     config: NETLIFY_CONFIG,
     buffer: true,
+    telemetry: false
   })
 
   // Netlify Build output
