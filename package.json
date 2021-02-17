@@ -4,9 +4,8 @@
   "description": "Netlify Build plugin - {{description}}",
   "main": "src/index.js",
   "files": [
-    "src",
-    "manifest.yml",
-    "!*~"
+    "src/**/*.js",
+    "manifest.yml"
   ],
   "scripts": {
     "init": "npm install --loglevel error --no-audit --no-fund && node init/bin.js",
