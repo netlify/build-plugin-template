@@ -29,7 +29,6 @@
     "lib": "src",
     "test": "test"
   },
-  "dependencies": {},
   "devDependencies": {
     "@netlify/build": "^4.7.2",
     "ava": "^3.13.0",
