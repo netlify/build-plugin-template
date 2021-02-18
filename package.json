@@ -5,6 +5,10 @@
   "main": "src/index.js",
   "files": [
     "src/**/*.js",
+    "src/**/*.json",
+    "src/**/*.sh",
+    "src/**/*.html",
+    "src/**/*.ejs",
     "manifest.yml"
   ],
   "scripts": {
