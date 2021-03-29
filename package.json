@@ -60,7 +60,7 @@
     "spdx-license-list": "^6.3.0",
     "strip-ansi": "^6.0.0",
     "username": "^5.1.0",
-    "yargs": "^15.4.1"
+    "yargs": "^16.0.0"
   },
   "engines": {
     "node": ">=10.22.0"
