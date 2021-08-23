@@ -9,6 +9,7 @@
       packageNames: [
         // Those cannot be upgraded to requiring ES modules
         'strip-ansi',
+        'username',
       ],
       major: {
         enabled: false,
