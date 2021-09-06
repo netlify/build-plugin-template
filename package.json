@@ -33,7 +33,7 @@
     "test": "test"
   },
   "devDependencies": {
-    "@netlify/build": "^18.7.2",
+    "@netlify/build": "^18.7.3",
     "ava": "^3.13.0",
     "chalk": "^4.1.0",
     "cpy": "^8.1.1",
