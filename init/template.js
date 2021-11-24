@@ -50,6 +50,6 @@ const replaceVariable = function (content, [name, value]) {
 }
 
 const DUMMY_NAME = 'netlify-plugin-example'
-const NODE_VERSION = '>=12.18.0'
+const NODE_VERSION = '^12.20.0 || ^14.14.0 || >=16.0.0'
 
 module.exports = { applyTemplates }
