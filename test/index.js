@@ -1,6 +1,6 @@
 const test = require('ava')
 
-const netlifyBuild = require('@netlify/build')
+const netlifyBuildPromise = import('@netlify/build')
 
 const NETLIFY_CONFIG = `${__dirname}/../netlify.toml`
 
@@ -12,6 +12,7 @@ const NETLIFY_CONFIG = `${__dirname}/../netlify.toml`
 // This is a smoke test. You will probably want to write more elaborate unit
 // tests to cover your plugin's logic.
 test('Netlify Build should not fail', async (t) => {
+  const { default: netlifyBuild } = await netlifyBuildPromise
   const { success, logs } = await netlifyBuild({
     config: NETLIFY_CONFIG,
     buffer: true,
