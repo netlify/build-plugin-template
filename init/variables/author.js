@@ -1,10 +1,10 @@
-const username = require('username')
-const execa = require('execa')
+import username from 'username'
+import execa from 'execa'
 
-const { trim } = require('./trim.js')
+import { trim } from './trim.js'
 
 // {{author}} template variable
-const AUTHOR_VARIABLE = {
+export const AUTHOR_VARIABLE = {
   name: 'author',
   description: 'Author name',
   // Try to guess current username
@@ -20,5 +20,3 @@ const AUTHOR_VARIABLE = {
   },
   filter: trim,
 }
-
-module.exports = { AUTHOR_VARIABLE }

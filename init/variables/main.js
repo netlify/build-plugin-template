@@ -1,20 +1,22 @@
-const inquirer = require('inquirer')
-const inquirerAutocomplete = require('inquirer-autocomplete-prompt')
-const { bold } = require('chalk')
+import inquirer from 'inquirer'
+import inquirerAutocomplete from 'inquirer-autocomplete-prompt'
+import chalk from 'chalk'
 
-const { NAME_VARIABLE } = require('./name.js')
-const { DESCRIPTION_VARIABLE } = require('./description.js')
-const { AUTHOR_VARIABLE } = require('./author.js')
-const { EMAIL_VARIABLE } = require('./email.js')
-const { LICENSE_VARIABLE } = require('./license.js')
-const { REPO_VARIABLE } = require('./repo.js')
-const { NODE_VERSION_VARIABLE } = require('./node_version.js')
+import { NAME_VARIABLE } from './name.js'
+import { DESCRIPTION_VARIABLE } from './description.js'
+import { AUTHOR_VARIABLE } from './author.js'
+import { EMAIL_VARIABLE } from './email.js'
+import { LICENSE_VARIABLE } from './license.js'
+import { REPO_VARIABLE } from './repo.js'
+import { NODE_VERSION_VARIABLE } from './node_version.js'
 
 inquirer.registerPrompt('autocomplete', inquirerAutocomplete)
 
 // Retrieve all template variables from either options or CLI interactive prompt
-const getVariables = async function (options) {
-  console.log(bold('\nWhich Netlify Build plugin would you like to create?\n'))
+export const getVariables = async function (options) {
+  console.log(
+    chalk.bold('\nWhich Netlify Build plugin would you like to create?\n'),
+  )
 
   const questions = VARIABLES.filter(
     ({ name }) => options[name] === undefined,
@@ -25,7 +27,7 @@ const getVariables = async function (options) {
 }
 
 // Each template variable
-const VARIABLES = [
+export const VARIABLES = [
   NAME_VARIABLE,
   DESCRIPTION_VARIABLE,
   AUTHOR_VARIABLE,
@@ -78,5 +80,3 @@ const getCurrentYear = function () {
 }
 
 const YEAR_BASE = 1900
-
-module.exports = { getVariables, VARIABLES }

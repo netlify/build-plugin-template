@@ -1,31 +1,27 @@
-const { readFile, writeFile } = require('fs')
-const { promisify } = require('util')
+import { readFile, writeFile } from 'fs/promises'
+import { fileURLToPath } from 'url'
 
-const del = require('del')
-const omit = require('omit.js').default
-const filterObj = require('filter-obj')
+import del from 'del'
+import omit from 'omit.js'
+import filterObj from 'filter-obj'
 
-const PACKAGE_ROOT = `${__dirname}/..`
+const PACKAGE_ROOT = fileURLToPath(new URL('..', import.meta.url))
 const SCRIPTS_DIR = `${PACKAGE_ROOT}/init`
 const PACKAGE_JSON = `${PACKAGE_ROOT}/package.json`
 
-const pReadFile = promisify(readFile)
-const pWriteFile = promisify(writeFile)
-
 // Remove all files, properties and logic needed by `npm run init` once
 // `npm run init` is done.
-const cleanRepo = async function () {
+export const cleanRepo = async function () {
   await Promise.all([del(SCRIPTS_DIR, { force: true }), cleanPackageJson()])
 }
 
 // Remove `npm run init` in `package.json` and all `devDependencies`.
 const cleanPackageJson = async function () {
-  const content = await pReadFile(PACKAGE_JSON, 'utf8')
-  const { scripts, dependencies, devDependencies, ...packageJson } = JSON.parse(
-    content,
-  )
+  const content = await readFile(PACKAGE_JSON, 'utf8')
+  const { scripts, dependencies, devDependencies, ...packageJson } =
+    JSON.parse(content)
 
-  const scriptsA = omit(scripts, ['init'])
+  const scriptsA = omit.default(scripts, ['init'])
   const devDependenciesA = filterObj(devDependencies, shouldKeepDevDependency)
   const packageJsonA = {
     ...packageJson,
@@ -35,7 +31,7 @@ const cleanPackageJson = async function () {
   }
 
   const contentA = JSON.stringify(packageJsonA, null, 2)
-  await pWriteFile(PACKAGE_JSON, contentA)
+  await writeFile(PACKAGE_JSON, contentA)
 }
 
 // Remove devDependencies used only for initialization
@@ -57,5 +53,3 @@ const DEV_DEPENDENCIES = [
   'prettier',
   'release-it',
 ]
-
-module.exports = { cleanRepo }
