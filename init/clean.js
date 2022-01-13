@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'fs/promises'
+import { promises as fs } from 'fs'
 import { fileURLToPath } from 'url'
 
 import del from 'del'
@@ -17,7 +17,7 @@ export const cleanRepo = async function () {
 
 // Remove `npm run init` in `package.json` and all `devDependencies`.
 const cleanPackageJson = async function () {
-  const content = await readFile(PACKAGE_JSON, 'utf8')
+  const content = await fs.readFile(PACKAGE_JSON, 'utf8')
   const { scripts, dependencies, devDependencies, ...packageJson } =
     JSON.parse(content)
 
@@ -31,7 +31,7 @@ const cleanPackageJson = async function () {
   }
 
   const contentA = JSON.stringify(packageJsonA, null, 2)
-  await writeFile(PACKAGE_JSON, contentA)
+  await fs.writeFile(PACKAGE_JSON, contentA)
 }
 
 // Remove devDependencies used only for initialization

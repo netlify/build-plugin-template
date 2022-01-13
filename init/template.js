@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'fs/promises'
+import { promises as fs } from 'fs'
 import { fileURLToPath } from 'url'
 
 import fastGlob from 'fast-glob'
@@ -19,9 +19,9 @@ const addPackageRoot = function (path) {
 }
 
 const applyTemplate = async function (file, variables) {
-  const content = await readFile(file, 'utf8')
+  const content = await fs.readFile(file, 'utf8')
   const contentA = replaceVariables(content, variables)
-  await writeFile(file, contentA)
+  await fs.writeFile(file, contentA)
 }
 
 const replaceVariables = function (content, variables) {
