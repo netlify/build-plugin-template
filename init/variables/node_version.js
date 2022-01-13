@@ -1,18 +1,16 @@
-const { validRange } = require('semver')
+import semver from 'semver'
 
-const { trim } = require('./trim.js')
+import { trim } from './trim.js'
 
 // {{nodeVersion}} template variable
-const NODE_VERSION_VARIABLE = {
+export const NODE_VERSION_VARIABLE = {
   name: 'nodeVersion',
   description: 'Supported Node.js version',
   default: '^12.20.0 || ^14.14.0 || >=16.0.0',
   filter: trim,
   validate(value) {
-    if (!validRange(value)) {
+    if (!semver.validRange(value)) {
       return 'Invalid version range'
     }
   },
 }
-
-module.exports = { NODE_VERSION_VARIABLE }

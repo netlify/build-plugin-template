@@ -1,5 +1,5 @@
 // Trim a string and Titleize it
-const trimTitleize = function (string) {
+export const trimTitleize = function (string) {
   const stringA = string.trim()
 
   if (stringA === '') {
@@ -9,8 +9,6 @@ const trimTitleize = function (string) {
   return `${stringA[0].toUpperCase()}${stringA.slice(1)}`
 }
 
-const trim = function (string) {
+export const trim = function (string) {
   return string.trim()
 }
-
-module.exports = { trimTitleize, trim }

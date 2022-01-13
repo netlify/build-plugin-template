@@ -1,10 +1,10 @@
-const { validate: validateEmail } = require('email-validator')
-const execa = require('execa')
+import { validate as validateEmail } from 'email-validator'
+import execa from 'execa'
 
-const { trim } = require('./trim.js')
+import { trim } from './trim.js'
 
 // {{email}} template variable
-const EMAIL_VARIABLE = {
+export const EMAIL_VARIABLE = {
   name: 'email',
   description: 'Author email address',
   // Try guessing current user's development email
@@ -25,5 +25,3 @@ const EMAIL_VARIABLE = {
     }
   },
 }
-
-module.exports = { EMAIL_VARIABLE }

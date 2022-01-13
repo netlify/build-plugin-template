@@ -1,9 +1,9 @@
-const spdxLicenseList = require('spdx-license-list')
-const fuzzy = require('fuzzy')
+import spdxLicenseList from 'spdx-license-list'
+import fuzzy from 'fuzzy'
 
 // {{license}} template variable.
 // Autocompleted from the list of valid SPDX licenses.
-const LICENSE_VARIABLE = {
+export const LICENSE_VARIABLE = {
   type: 'autocomplete',
   name: 'license',
   description: 'Software license',
@@ -21,5 +21,3 @@ const LICENSES = [
   'BSD-3-Clause',
   ...Object.keys(spdxLicenseList),
 ]
-
-module.exports = { LICENSE_VARIABLE }

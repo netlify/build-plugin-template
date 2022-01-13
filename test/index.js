@@ -1,8 +1,11 @@
-const test = require('ava')
+import test from 'ava'
+import { fileURLToPath } from 'url'
 
-const netlifyBuildPromise = import('@netlify/build')
+import netlifyBuild from '@netlify/build'
 
-const NETLIFY_CONFIG = `${__dirname}/../netlify.toml`
+const NETLIFY_CONFIG = fileURLToPath(
+  new URL('../netlify.toml', import.meta.url),
+)
 
 // Unit tests are using the AVA test runner: https://github.com/avajs/ava
 // A local build is performed using the following command:
@@ -12,7 +15,6 @@ const NETLIFY_CONFIG = `${__dirname}/../netlify.toml`
 // This is a smoke test. You will probably want to write more elaborate unit
 // tests to cover your plugin's logic.
 test('Netlify Build should not fail', async (t) => {
-  const { default: netlifyBuild } = await netlifyBuildPromise
   const { success, logs } = await netlifyBuild({
     config: NETLIFY_CONFIG,
     buffer: true,

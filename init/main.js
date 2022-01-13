@@ -1,15 +1,15 @@
-const execa = require('execa')
-const { red } = require('chalk')
+import execa from 'execa'
+import chalk from 'chalk'
 
-const { getOptions } = require('./options.js')
-const { copyFiles } = require('./copy.js')
-const { applyTemplates } = require('./template.js')
-const { cleanRepo } = require('./clean.js')
-// const { createSite } = require('./site.js')
+import { getOptions } from './options.js'
+import { copyFiles } from './copy.js'
+import { applyTemplates } from './template.js'
+import { cleanRepo } from './clean.js'
+// import { createSite } from './site.js'
 
 // `npm run init` main logic.
 // Initialize/scaffold the template repository.
-const init = async function (options) {
+export const init = async function (options) {
   const { variables } = await getOptions(options)
 
   try {
@@ -21,7 +21,7 @@ const init = async function (options) {
     await execa.command('git commit -m Init')
     // Revert changes on errors
   } catch (error) {
-    console.error(red('Error: Initialization failed.'))
+    console.error(chalk.red('Error: Initialization failed.'))
     await execa.command('git reset --hard')
     await npmInstall()
     throw error
@@ -35,5 +35,3 @@ const npmInstall = async function () {
     stdio: 'inherit',
   })
 }
-
-module.exports = { init }

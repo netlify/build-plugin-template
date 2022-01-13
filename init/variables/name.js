@@ -1,7 +1,7 @@
-const { getRepo } = require('./repo.js')
+import { getRepo } from './repo.js'
 
 // {{name}} template variable
-const NAME_VARIABLE = {
+export const NAME_VARIABLE = {
   name: 'name',
   description: 'Plugin name',
   async default() {
@@ -33,5 +33,3 @@ const filterValue = function (value, word) {
 }
 
 const NAME_DENYLIST = ['netlify', 'build', 'plugin', 'addon']
-
-module.exports = { NAME_VARIABLE }

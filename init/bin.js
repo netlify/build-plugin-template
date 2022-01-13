@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 // eslint-disable-next-line node/shebang
-const { exit } = require('process')
+import { exit, argv } from 'process'
 
-const yargs = require('yargs')
-const filterObj = require('filter-obj')
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
+import filterObj from 'filter-obj'
 
-const { init } = require('./main.js')
-const { VARIABLES } = require('./variables/main.js')
+import { init } from './main.js'
+import { VARIABLES } from './variables/main.js'
 
 // CLI entry point of `npm run init`
 const runCli = async function () {
@@ -23,7 +24,7 @@ const runCli = async function () {
 
 // Parse CLI flags
 const parseFlags = function () {
-  return yargs.options(FLAGS).usage(USAGE).parse()
+  return yargs(hideBin(argv)).options(FLAGS).usage(USAGE).parse()
 }
 
 // Retrieve CLI flags
@@ -36,10 +37,12 @@ const getVariableFlag = function ({
   description,
   default: defaultValue,
 }) {
+  const defaultDescription =
+    typeof defaultValue === 'string' ? `\nDefault: ${defaultValue}` : ''
   return {
     [name]: {
       string: true,
-      describe: `${description}.\nDefault: ${defaultValue}`,
+      describe: `${description}.${defaultDescription}`,
     },
   }
 }

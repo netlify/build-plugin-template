@@ -1,9 +1,9 @@
-const gitRemoteOriginUrl = require('git-remote-origin-url')
+import gitRemoteOriginUrl from 'git-remote-origin-url'
 
-const { trim } = require('./trim.js')
+import { trim } from './trim.js'
 
 // {{repo}} template variable
-const REPO_VARIABLE = {
+export const REPO_VARIABLE = {
   name: 'repo',
   description: 'Source code repository',
   // Try to guess the current repository's user/repo
@@ -17,7 +17,7 @@ const REPO_VARIABLE = {
   filter: trim,
 }
 
-const getRepo = async function () {
+export const getRepo = async function () {
   try {
     const url = await gitRemoteOriginUrl()
     const [, repo] = url.split(':')
@@ -26,5 +26,3 @@ const getRepo = async function () {
     return
   }
 }
-
-module.exports = { REPO_VARIABLE, getRepo }

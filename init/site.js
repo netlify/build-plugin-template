@@ -1,14 +1,14 @@
-const execa = require('execa')
-const { bold } = require('chalk')
-const stripAnsi = require('strip-ansi')
+import execa from 'execa'
+import chalk from 'chalk'
+import stripAnsi from 'strip-ansi'
 
-const { getRepo } = require('./variables/repo.js')
-const { applyTemplates } = require('./template.js')
+import { getRepo } from './variables/repo.js'
+import { applyTemplates } from './template.js'
 
 // Create a Netlify Site for the new repository
-const createSite = async function ({ name }) {
+export const createSite = async function ({ name }) {
   try {
-    console.log(bold(`\nCreating a new Netlify Site...\n`))
+    console.log(chalk.bold(`\nCreating a new Netlify Site...\n`))
     await login()
     const username = await getUsername()
     const siteId = await createNewSite(name, username)
@@ -60,9 +60,7 @@ const createNewSite = async function (name, username) {
   }
 
   const accountSlug = getAccountSlug(username)
-  const {
-    all: allA,
-  } = await execa.command(
+  const { all: allA } = await execa.command(
     `netlify sites:create --name netlify-plugin-${name} ${accountSlug}`,
     { all: true },
   )
@@ -93,5 +91,3 @@ const getAccountSlug = function (username) {
   }
   return `--account-slug=${username}`
 }
-
-module.exports = { createSite }

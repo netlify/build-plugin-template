@@ -1,17 +1,14 @@
-const { readFile, writeFile } = require('fs')
-const { promisify } = require('util')
+import { promises as fs } from 'fs'
+import { fileURLToPath } from 'url'
 
-const fastGlob = require('fast-glob')
+import fastGlob from 'fast-glob'
 
-const PACKAGE_ROOT = `${__dirname}/..`
+const PACKAGE_ROOT = fileURLToPath(new URL('..', import.meta.url))
 // Files that have template variables
 const TEMPLATES = ['*.{json,md}', '{src,.github}/**']
 
-const pReadFile = promisify(readFile)
-const pWriteFile = promisify(writeFile)
-
 // Substitute template variables {{var}} in all source files
-const applyTemplates = async function (variables) {
+export const applyTemplates = async function (variables) {
   const templates = TEMPLATES.map(addPackageRoot)
   const files = await fastGlob(templates)
   await Promise.all(files.map((file) => applyTemplate(file, variables)))
@@ -22,9 +19,9 @@ const addPackageRoot = function (path) {
 }
 
 const applyTemplate = async function (file, variables) {
-  const content = await pReadFile(file, 'utf8')
+  const content = await fs.readFile(file, 'utf8')
   const contentA = replaceVariables(content, variables)
-  await pWriteFile(file, contentA)
+  await fs.writeFile(file, contentA)
 }
 
 const replaceVariables = function (content, variables) {
@@ -51,5 +48,3 @@ const replaceVariable = function (content, [name, value]) {
 
 const DUMMY_NAME = 'netlify-plugin-example'
 const NODE_VERSION = '^12.20.0 || ^14.14.0 || >=16.0.0'
-
-module.exports = { applyTemplates }
