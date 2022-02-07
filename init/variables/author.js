@@ -1,5 +1,5 @@
 import username from 'username'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 
 import { trim } from './trim.js'
 
@@ -9,7 +9,7 @@ export const AUTHOR_VARIABLE = {
   description: 'Author name',
   // Try to guess current username
   async default() {
-    const { stdout } = await execa.command('git config user.name', {
+    const { stdout } = await execaCommand('git config user.name', {
       reject: false,
     })
     if (stdout !== '') {

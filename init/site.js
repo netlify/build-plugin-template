@@ -1,4 +1,4 @@
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import chalk from 'chalk'
 import stripAnsi from 'strip-ansi'
 
@@ -28,13 +28,13 @@ const login = async function () {
     return
   }
 
-  await execa.command('netlify login', { stdio: 'inherit' })
+  await execaCommand('netlify login', { stdio: 'inherit' })
 
   await isLoggedIn(true)
 }
 
 const isLoggedIn = async function (reject) {
-  const { failed } = await execa.command(
+  const { failed } = await execaCommand(
     'netlify api getCurrentUser --data {}',
     { reject },
   )
@@ -53,14 +53,14 @@ const getUsername = async function () {
 
 // Create a new Netlify Site, if needed
 const createNewSite = async function (name, username) {
-  const { all } = await execa.command('netlify status', { all: true })
+  const { all } = await execaCommand('netlify status', { all: true })
   const result = getSiteId(all)
   if (result.siteId !== undefined) {
     return result.siteId
   }
 
   const accountSlug = getAccountSlug(username)
-  const { all: allA } = await execa.command(
+  const { all: allA } = await execaCommand(
     `netlify sites:create --name netlify-plugin-${name} ${accountSlug}`,
     { all: true },
   )
@@ -69,7 +69,7 @@ const createNewSite = async function (name, username) {
     throw new Error(allA)
   }
 
-  await execa.command(`netlify link --id ${siteId}`, { stdio: 'inherit' })
+  await execaCommand(`netlify link --id ${siteId}`, { stdio: 'inherit' })
 
   return siteId
 }

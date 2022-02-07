@@ -1,4 +1,4 @@
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import chalk from 'chalk'
 
 import { getOptions } from './options.js'
@@ -17,12 +17,12 @@ export const init = async function (options) {
     await applyTemplates(variables)
     await cleanRepo()
     await npmInstall()
-    await execa.command('git add -A')
-    await execa.command('git commit -m Init')
+    await execaCommand('git add -A')
+    await execaCommand('git commit -m Init')
     // Revert changes on errors
   } catch (error) {
     console.error(chalk.red('Error: Initialization failed.'))
-    await execa.command('git reset --hard')
+    await execaCommand('git reset --hard')
     await npmInstall()
     throw error
   }
@@ -31,7 +31,7 @@ export const init = async function (options) {
 }
 
 const npmInstall = async function () {
-  await execa.command('npm install --loglevel error --no-audit --no-fund', {
+  await execaCommand('npm install --loglevel error --no-audit --no-fund', {
     stdio: 'inherit',
   })
 }
