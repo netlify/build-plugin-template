@@ -61,7 +61,7 @@
     "semver": "^7.3.2",
     "spdx-license-list": "^6.3.0",
     "strip-ansi": "^7.0.0",
-    "username": "^5.1.0",
+    "username": "^6.0.0",
     "yargs": "^17.0.0"
   },
   "engines": {

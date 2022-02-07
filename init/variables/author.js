@@ -1,4 +1,4 @@
-import username from 'username'
+import { username } from 'username'
 import { execaCommand } from 'execa'
 
 import { trim } from './trim.js'
