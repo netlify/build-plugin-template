@@ -1,5 +1,5 @@
 import { validate as validateEmail } from 'email-validator'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 
 import { trim } from './trim.js'
 
@@ -9,7 +9,7 @@ export const EMAIL_VARIABLE = {
   description: 'Author email address',
   // Try guessing current user's development email
   async default() {
-    const { stdout } = await execa.command('git config user.email', {
+    const { stdout } = await execaCommand('git config user.email', {
       reject: false,
     })
     if (stdout !== '') {
