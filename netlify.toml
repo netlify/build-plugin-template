@@ -16,4 +16,4 @@ package = "."
 command = "echo onBuild"
 
 [build.environment]
-NODE_VERSION = "12.20.0"
+NODE_VERSION = "14.14.0"
