@@ -35,7 +35,7 @@
     "test": "test"
   },
   "devDependencies": {
-    "@netlify/build": "^26.5.2",
+    "@netlify/build": "^27.20.6",
     "ava": "^4.0.0",
     "chalk": "^5.0.0",
     "cpy": "^9.0.0",
