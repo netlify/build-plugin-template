@@ -46,7 +46,7 @@
     "eslint-config-prettier": "^8.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-n": "^14.0.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "execa": "^6.0.0",
     "fast-glob": "^3.2.4",
     "filter-obj": "^3.0.0",
