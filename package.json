@@ -54,7 +54,7 @@
     "git-remote-origin-url": "^4.0.0",
     "inquirer": "^8.0.0",
     "inquirer-autocomplete-prompt": "^2.0.0",
-    "netlify-cli": "^9.16.2",
+    "netlify-cli": "^19.0.0",
     "omit.js": "^2.0.2",
     "prettier": "^2.1.2",
     "release-it": "^15.0.0",
